@@ -9,6 +9,9 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
+import com.example.interviewproject.util.LocalOrientationMode
+import com.example.interviewproject.util.LocaleAppDimens
+import com.example.interviewproject.util.ProvideAppUtils
 
 private val DarkColorScheme = darkColorScheme(
     primary = Purple80,
@@ -34,6 +37,7 @@ private val LightColorScheme = lightColorScheme(
 
 @Composable
 fun InterviewProjectTheme(
+    windowSizeClass: WindowSizeClass,
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     dynamicColor: Boolean = true,
@@ -48,10 +52,39 @@ fun InterviewProjectTheme(
         darkTheme -> DarkColorScheme
         else -> LightColorScheme
     }
-
+    val orientation = when {
+        windowSizeClass.width.size > windowSizeClass.height.size -> Orientation.Landscape
+        else -> Orientation.Portrait
+    }
+    val sizeThatMatters = when (orientation) {
+        Orientation.Portrait -> windowSizeClass.width
+        else -> windowSizeClass.height
+    }
+    val dimensions = when (sizeThatMatters) {
+        is WindowSize.Small -> smallDimensions
+        is WindowSize.Compact -> compactDimensions
+        is WindowSize.Medium -> mediumDimensions
+        else -> largeDimensions
+    }
+    val typography = when (sizeThatMatters) {
+        is WindowSize.Small -> TypographySmall
+        is WindowSize.Compact -> TypographyCompact
+        is WindowSize.Medium -> TypographyMedium
+        else -> TypographyBig
+    }
+ProvideAppUtils(dimensions =dimensions, orientation =orientation ) {
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = Typography,
+        typography = typography,
         content = content
     )
+}
+}
+object AppTheme{
+    val dimens:Dimensions
+    @Composable
+    get() = LocaleAppDimens.current
+    val orientation:Orientation
+    @Composable
+    get() = LocalOrientationMode.current
 }
