@@ -133,7 +133,7 @@ fun GridItem(item: HomeItem, navController: NavController) {
             .size((LocalConfiguration.current.screenWidthDp * 0.30f).dp)
             .padding(8.dp)
             .background(Color.Black.copy(alpha = 0.5f))
-        .clickable(onClick = { navController.navigate(Screen.ItemScreen.route)}),
+        .clickable(onClick = { navController.navigate("${Screen.ItemScreen.route}/${item.title}/${item.logo}")}),
         contentAlignment = Alignment.Center
     ) {
         Column(

@@ -3,6 +3,8 @@
     <string name="app_name">InterviewProject</string>
     <string name="inohom_text">inohom</string>
     <string name="inohom_plus_text">inohom+</string>
+    <string name="back">Geri</string>
+
     <string name="version_text">V1.7.0</string>
     <string name="onboarding_button_text">Hesaplar</string>
     <string name="favourites_text">Favoriler</string>
@@ -20,6 +22,12 @@
     <string name="sensor_text">Sensör</string>
     <string name="apartment_management_text">Site Yönetimi</string>
     <string name="concierge_text">Konsiyerj</string>
+    <string name="yonetim">Yönetim</string>
+    <string name="serkan">Serkan Led</string>
+    <string name="abajur">Abajur</string>
+    <string name="arge">Arge</string>
+    <string name="lorem">Lorem</string>
+    <string name="ipsum">Ipsum</string>
 
 
 </resources>

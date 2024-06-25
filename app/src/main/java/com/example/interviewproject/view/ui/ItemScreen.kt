@@ -34,40 +34,47 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.interviewproject.R
-import com.example.interviewproject.model.HomeItem
+import com.example.interviewproject.model.ItemData
 import com.example.interviewproject.view.theme.AppTheme
-import com.example.interviewproject.view.ui.navigation.Screen
 
 @Composable
-fun ItemScreen(navController: NavController) {
-    val items = listOf(
-        HomeItem(title = stringResource(R.string.favourites_text), logo = R.drawable.baseline_favorite_24),
-        HomeItem(title = stringResource(R.string.lighting_text), logo = R.drawable.baseline_lightbulb_outline_24),
-        HomeItem(title = stringResource(R.string.curtain_text), logo = R.drawable.baseline_curtains_24),
-        HomeItem(title = stringResource(R.string.socket_text), logo = R.drawable.baseline_power_24),
-        HomeItem(title = stringResource(R.string.scenario_text), logo = R.drawable.baseline_description_24),
-        HomeItem(title = stringResource(R.string.controller_text), logo = R.drawable.baseline_padding_24),
-        HomeItem(title = stringResource(R.string.camera_text), logo = R.drawable.baseline_photo_camera_24),
-        HomeItem(title = stringResource(R.string.alarm_text), logo = R.drawable.baseline_access_alarm_24),
-        HomeItem(title = stringResource(R.string.intercom_text), logo = R.drawable.baseline_mic_external_on_24),
-        HomeItem(title = stringResource(R.string.system_text), logo = R.drawable.baseline_brightness_5_24),
-        HomeItem(title = stringResource(R.string.heating_text), logo = R.drawable.baseline_device_thermostat_24),
-        HomeItem(title = stringResource(R.string.air_conditioner_text), logo = R.drawable.baseline_dew_point_24),
-        HomeItem(title = stringResource(R.string.sensor_text), logo = R.drawable.baseline_adb_24),
-        HomeItem(title = stringResource(R.string.apartment_management_text), logo = R.drawable.baseline_apartment_24),
-        HomeItem(title = stringResource(R.string.concierge_text), logo = R.drawable.baseline_handshake_24),
+fun ItemScreen(clickedHome:String,
+    clickedHomeLogo:Int
+    ,navController: NavController) {
+    val itemsLighting = listOf(
+        ItemData(title = stringResource(R.string.yonetim)),
+        ItemData(title = stringResource(R.string.serkan)),
+        ItemData(title = stringResource(R.string.abajur)),
+        ItemData(title = stringResource(R.string.arge)),
+        ItemData(title = stringResource(R.string.lorem)),
+        ItemData(title = stringResource(R.string.ipsum)),
+        ItemData(title = stringResource(R.string.lorem)),
+        ItemData(title = stringResource(R.string.ipsum)),
+        ItemData(title = stringResource(R.string.lorem)),
+        ItemData(title = stringResource(R.string.ipsum)),
+        ItemData(title = stringResource(R.string.lorem)),
+        ItemData(title = stringResource(R.string.ipsum)),
+        ItemData(title = stringResource(R.string.lorem)),
+        ItemData(title = stringResource(R.string.ipsum)),
+        ItemData(title = stringResource(R.string.lorem)),
     )
 
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background
     ) {
-        LinearGradientItem(navController, items)
+        if (clickedHome == "Lighting"){
+            LinearGradientItem(clickedHome,clickedHomeLogo, navController,itemsLighting)
+        }
+        else {
+            ElseScreen(navController =navController,clickedHome,clickedHomeLogo)
+        }
+
     }
 }
 
 @Composable
-fun LinearGradientItem(navController: NavController, items: List<HomeItem>) {
+fun LinearGradientItem(clickedHome: String,clickedHomeLogo: Int,navController: NavController, items: List<ItemData>) {
     val gradient = Brush.linearGradient(
         0.0f to Color.Magenta,
         500.0f to Color.Cyan,
@@ -89,19 +96,35 @@ fun LinearGradientItem(navController: NavController, items: List<HomeItem>) {
                         .height((LocalConfiguration.current.screenHeightDp * 0.1f).dp)
                         .background(Color.Black.copy(alpha = 0.5f))
                         .padding(horizontal = 10.dp, vertical = 8.dp),
-                    contentAlignment = Alignment.Center
+                    contentAlignment = Alignment.CenterStart
                 ) {
                     Text(
-                        text = stringResource(id = R.string.inohom_text),
+                        text = stringResource(id = R.string.back),
+                        textAlign = TextAlign.Start,
+                        style = MaterialTheme.typography.bodyLarge,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White,
+                        modifier = Modifier
+                            .align(Alignment.CenterStart)
+                            .padding(vertical = AppTheme.dimens.small)
+                            .clickable {
+                                navController.popBackStack()
+                            }
+                    )
+
+                    Text(
+                        text = clickedHome,
                         textAlign = TextAlign.Center,
                         style = MaterialTheme.typography.bodyLarge,
                         fontWeight = FontWeight.Bold,
                         color = Color.White,
-                        modifier = Modifier.padding(vertical = AppTheme.dimens.small)
+                        modifier = Modifier
+                            .align(Alignment.Center)
+                            .padding(vertical = AppTheme.dimens.small)
                     )
 
                     Image(
-                        painter = painterResource(id = R.drawable.baseline_brightness_5_24),
+                        painter = painterResource(clickedHomeLogo),
                         contentDescription = null,
                         modifier = Modifier
                             .align(Alignment.CenterEnd)
@@ -114,10 +137,10 @@ fun LinearGradientItem(navController: NavController, items: List<HomeItem>) {
                 LazyVerticalGrid(
                     modifier = Modifier.fillMaxSize(),
                     contentPadding = PaddingValues(AppTheme.dimens.small),
-                    columns = GridCells.Fixed(3)
+                    columns = GridCells.Fixed(2)
                 ) {
                     items(items) { item ->
-                        GridItems(item = item, navController)
+                        GridItems(item = item, navController,clickedHomeLogo)
                     }
                 }
             }
@@ -126,13 +149,12 @@ fun LinearGradientItem(navController: NavController, items: List<HomeItem>) {
 }
 
 @Composable
-fun GridItems(item: HomeItem, navController: NavController) {
+fun GridItems(item: ItemData, navController: NavController, clickedHomeLogo: Int) {
     Box(
         modifier = Modifier
             .size((LocalConfiguration.current.screenWidthDp * 0.30f).dp)
             .padding(8.dp)
-            .background(Color.Black.copy(alpha = 0.5f))
-            .clickable(onClick = { navController.navigate(Screen.ItemScreen.route)}),
+            .background(Color.Black.copy(alpha = 0.5f)),
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -140,7 +162,7 @@ fun GridItems(item: HomeItem, navController: NavController) {
             verticalArrangement = Arrangement.Center
         ) {
             Image(
-                painter = painterResource(id = item.logo),
+                painter = painterResource(clickedHomeLogo),
                 contentDescription = null,
                 modifier = Modifier.size(50.dp) // Must be responsive
             )
@@ -150,6 +172,69 @@ fun GridItems(item: HomeItem, navController: NavController) {
                 textAlign = TextAlign.Center,
                 modifier = Modifier.padding(top = AppTheme.dimens.mediumLarge)
             )
+        }
+    }
+}
+@Composable
+fun ElseScreen(navController: NavController,clickedHome: String,clickedHomeLogo: Int) {
+    val gradient = Brush.linearGradient(
+        0.0f to Color.Magenta,
+        500.0f to Color.Cyan,
+        start = Offset.Zero,
+        end = Offset.Infinite
+    )
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(brush = gradient),
+        contentAlignment = Alignment.Center
+    ) {
+        Column {
+            Spacer(modifier = Modifier.height(25.dp))
+            Row {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height((LocalConfiguration.current.screenHeightDp * 0.1f).dp)
+                        .background(Color.Black.copy(alpha = 0.5f))
+                        .padding(horizontal = 10.dp, vertical = 8.dp),
+                    contentAlignment = Alignment.CenterStart
+                ) {
+                    Text(
+                        text = stringResource(id = R.string.back),
+                        textAlign = TextAlign.Start,
+                        style = MaterialTheme.typography.bodyLarge,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White,
+                        modifier = Modifier
+                            .align(Alignment.CenterStart)
+                            .padding(vertical = AppTheme.dimens.small)
+                            .clickable {
+                                navController.popBackStack()
+                            }
+                    )
+
+                    Text(
+                        text = clickedHome,
+                        textAlign = TextAlign.Center,
+                        style = MaterialTheme.typography.bodyLarge,
+                        fontWeight = FontWeight.Bold,
+                        color = Color.White,
+                        modifier = Modifier
+                            .align(Alignment.Center)
+                            .padding(vertical = AppTheme.dimens.small)
+                    )
+
+                    Image(
+                        painter = painterResource(clickedHomeLogo),
+                        contentDescription = null,
+                        modifier = Modifier
+                            .align(Alignment.CenterEnd)
+                            .size(40.dp)
+                            .padding(end = AppTheme.dimens.small)
+                    )
+                }
+            }
         }
     }
 }
