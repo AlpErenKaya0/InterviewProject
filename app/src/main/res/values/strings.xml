@@ -1,3 +1,23 @@
 <resources>
     <string name="app_name">InterviewProject</string>
+    <string name="inohom_text">inohom</string>
+    <string name="inohom_plus_text">inohom+</string>
+    <string name="version_text">V1.7.0</string>
+    <string name="onboarding_button_text">Accounts</string>
+    <string name="favourites_text">Favourites</string>
+    <string name="lighting_text">Lighting</string>
+    <string name="curtain_text">Curtain</string>
+    <string name="socket_text">Socket</string>
+    <string name="scenario_text">Scenario</string>
+    <string name="controller_text">Controller</string>
+    <string name="camera_text">Camera</string>
+    <string name="alarm_text">Alarm</string>
+    <string name="intercom_text">Intercom</string>
+    <string name="system_text">System</string>
+    <string name="heating_text">Heating</string>
+    <string name="air_conditioner_text">Air Cond</string>
+    <string name="sensor_text">Sensor</string>
+    <string name="apartment_management_text">Apt Management</string>
+    <string name="concierge_text">Concierge</string>
+
 </resources>

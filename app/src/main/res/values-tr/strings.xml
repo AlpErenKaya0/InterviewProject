@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">InterviewProject</string>
+    <string name="inohom_text">inohom</string>
+    <string name="inohom_plus_text">inohom+</string>
+    <string name="version_text">V1.7.0</string>
+    <string name="onboarding_button_text">Hesaplar</string>
+    <string name="favourites_text">Favoriler</string>
+    <string name="lighting_text">Aydınlatma</string>
+    <string name="curtain_text">Perde</string>
+    <string name="socket_text">Priz</string>
+    <string name="scenario_text">Senaryo</string>
+    <string name="controller_text">Kumanda</string>
+    <string name="camera_text">Kamera</string>
+    <string name="alarm_text">Alarm</string>
+    <string name="intercom_text">Interkom</string>
+    <string name="system_text">Sistem</string>
+    <string name="heating_text">Isıtma</string>
+    <string name="air_conditioner_text">Klima</string>
+    <string name="sensor_text">Sensör</string>
+    <string name="apartment_management_text">Site Yönetimi</string>
+    <string name="concierge_text">Konsiyerj</string>
+
+
+</resources>
