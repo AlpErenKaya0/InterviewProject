@@ -23,11 +23,11 @@ fun Navigation() {
         }
         composable(route = Screen.OnBoardingScreen.route) {
             val viewModel = viewModel<OnBoardingViewModel>()
-            OnBoardingScreen(navController = navController)
+            OnBoardingScreen(navController = navController, viewModel)
         }
         composable(route =Screen.HomeScreen.route ){
             val viewModel = viewModel<HomeScreenViewModel>()
-            HomeScreen(navController = navController)
+            HomeScreen(homeScreenViewModel = viewModel, navController = navController)
         }
         composable(route = "item_screen/{clickedHome}/{clickedHomeLogo}", arguments = listOf(
                 navArgument("clickedHome"){

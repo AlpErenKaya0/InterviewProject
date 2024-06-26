@@ -32,16 +32,20 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.interviewproject.R
 import com.example.interviewproject.data.HomeItem
 import com.example.interviewproject.presentation.theme.AppTheme
 import com.example.interviewproject.presentation.ui.navigation.Screen
+import com.example.interviewproject.viewmodels.homescreenvm.HomeScreenViewModel
 import dagger.hilt.android.scopes.ViewScoped
 import okhttp3.Request
 @ViewScoped
 @Composable
-fun HomeScreen(navController: NavController) {
+fun HomeScreen(
+    homeScreenViewModel: HomeScreenViewModel = viewModel(),
+    navController: NavController) {
     val items = listOf(
         HomeItem(title = stringResource(R.string.favourites_text), logo = R.drawable.baseline_favorite_24),
         HomeItem(title = stringResource(R.string.lighting_text), logo = R.drawable.baseline_lightbulb_outline_24),
@@ -134,8 +138,9 @@ fun GridItem(item: HomeItem, navController: NavController) {
             .size((LocalConfiguration.current.screenWidthDp * 0.30f).dp)
             .padding(8.dp)
             .background(Color.Black.copy(alpha = 0.5f))
-        .clickable(onClick = {
-            navController.navigate("${Screen.ItemScreen.route}/${item.title}/${item.logo}")}),
+            .clickable(onClick = {
+                navController.navigate("${Screen.ItemScreen.route}/${item.title}/${item.logo}")
+            }),
         contentAlignment = Alignment.Center
     ) {
         Column(
