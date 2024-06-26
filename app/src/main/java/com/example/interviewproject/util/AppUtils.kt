@@ -4,10 +4,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Modifier
-import com.example.interviewproject.view.theme.Dimensions
-import com.example.interviewproject.view.theme.Orientation
-import com.example.interviewproject.view.theme.smallDimensions
+import com.example.interviewproject.presentation.theme.Dimensions
+import com.example.interviewproject.presentation.theme.Orientation
+import com.example.interviewproject.presentation.theme.smallDimensions
 
 @Composable
 fun ProvideAppUtils(

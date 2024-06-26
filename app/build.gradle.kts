@@ -1,8 +1,11 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
-}
+    id ("kotlin-kapt")
+    id ("kotlin-parcelize")
+    id("com.google.devtools.ksp")
 
+}
 android {
     namespace = "com.example.interviewproject"
     compileSdk = 34
@@ -50,9 +53,32 @@ android {
 }
 
 dependencies {
+    implementation(libs.hilt.android)
+
+    ksp(libs.hilt.compiler)
+    ksp("androidx.hilt:hilt-compiler:1.2.0")
+    implementation(libs.androidx.hilt.navigation.compose)
+    implementation(libs.hilt.work)
+    implementation(libs.androidx.work.runtime.ktx)
+    implementation (libs.androidx.lifecycle.viewmodel.compose)
+    implementation (libs.androidx.navigation.compose.v274)
+    implementation (libs.accompanist.flowlayout)
+    implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    implementation (libs.kotlinx.coroutines.android.v164)
+    implementation (libs.androidx.lifecycle.viewmodel.ktx.v262)
+    implementation (libs.androidx.lifecycle.runtime.ktx)
+    implementation (libs.converter.gson)
+    implementation (libs.okhttp)
+    implementation (libs.logging.interceptor)
+    implementation (libs.androidx.lifecycle.viewmodel.ktx)
+    implementation (libs.androidx.lifecycle.livedata.ktx)
+    implementation (libs.kotlinx.coroutines.android)
     implementation (libs.androidx.navigation.ui.ktx)
     implementation(libs.androidx.navigation.compose)
-
+    implementation (libs.ktor.client.websocket)
+    implementation ("io.ktor:ktor-client-json:2.3.12")
+    implementation (libs.kotlinx.coroutines.core)
+    implementation (libs.kotlinx.serialization.json)
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
