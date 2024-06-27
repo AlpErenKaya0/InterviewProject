@@ -1,6 +1,7 @@
 package com.example.interviewproject.presentation.ui.navigation
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
@@ -17,17 +18,15 @@ import com.example.interviewproject.viewmodels.homescreenvm.HomeScreenViewModel
 @Composable
 fun Navigation() {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = Screen.SplashScreen.route){
-        composable(route = Screen.SplashScreen.route ){
+    NavHost(navController = navController, startDestination = Screen.SplashScreen.route) {
+        composable(route = Screen.SplashScreen.route) {
             SplashScreen(navController = navController)
         }
         composable(route = Screen.OnBoardingScreen.route) {
-            val viewModel = viewModel<OnBoardingViewModel>()
-            OnBoardingScreen(navController = navController, viewModel)
+            OnBoardingScreen(navController = navController)
         }
         composable(route =Screen.HomeScreen.route ){
-            val viewModel = viewModel<HomeScreenViewModel>()
-            HomeScreen(homeScreenViewModel = viewModel, navController = navController)
+            HomeScreen(navController = navController)
         }
         composable(route = "item_screen/{clickedHome}/{clickedHomeLogo}", arguments = listOf(
                 navArgument("clickedHome"){

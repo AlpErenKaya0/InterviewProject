@@ -15,9 +15,8 @@ import okhttp3.WebSocketListener
 import javax.inject.Inject
 
 @HiltViewModel
-class ItemScreenViewModel  @Inject constructor(
-    private val client: OkHttpClient
-) : ViewModel() {
+class ItemScreenViewModel   : ViewModel() {
+    private val client= OkHttpClient()
     fun sendWebSocketRequest() {
         val json = """
             {

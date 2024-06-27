@@ -32,17 +32,18 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.example.interviewproject.R
 import com.example.interviewproject.data.ItemData
 import com.example.interviewproject.presentation.theme.AppTheme
+import com.example.interviewproject.viewmodels.itemscreenvm.ItemScreenViewModel
 import dagger.hilt.android.scopes.ViewScoped
-
-@ViewScoped
 @Composable
 fun ItemScreen(clickedHome:String,
     clickedHomeLogo:Int
-    ,navController: NavController) {
+    ,navController: NavController,
+               itemScreenViewModel: ItemScreenViewModel = hiltViewModel()) {
     val itemsLighting = listOf(
         ItemData(title = stringResource(R.string.yonetim)),
         ItemData(title = stringResource(R.string.serkan)),

@@ -11,9 +11,10 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.TileMode
+import com.example.interviewproject.TestScreenViewModel
 
 @Composable
-fun TestScreen() {
+fun TestScreen(viewModel: TestScreenViewModel) {
     Surface(
         modifier = Modifier.fillMaxSize(),
         color = MaterialTheme.colorScheme.background

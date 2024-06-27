@@ -20,7 +20,7 @@ import com.example.interviewproject.presentation.ui.navigation.Screen
 import dagger.Binds
 import dagger.hilt.android.scopes.ViewScoped
 import kotlinx.coroutines.delay
-@ViewScoped
+
 @SuppressLint("CustomSplashScreen")
 @Composable
 fun SplashScreen(
@@ -36,7 +36,6 @@ fun SplashScreen(
         )
         delay(2000)
         navController.navigate(Screen.OnBoardingScreen.route)
-
     }
     Box(
         modifier = Modifier

@@ -32,6 +32,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.example.interviewproject.R
@@ -41,10 +42,10 @@ import com.example.interviewproject.presentation.ui.navigation.Screen
 import com.example.interviewproject.viewmodels.homescreenvm.HomeScreenViewModel
 import dagger.hilt.android.scopes.ViewScoped
 import okhttp3.Request
-@ViewScoped
+
 @Composable
 fun HomeScreen(
-    homeScreenViewModel: HomeScreenViewModel = viewModel(),
+    homeScreenViewModel: HomeScreenViewModel = hiltViewModel(),
     navController: NavController) {
     val items = listOf(
         HomeItem(title = stringResource(R.string.favourites_text), logo = R.drawable.baseline_favorite_24),

@@ -1,5 +1,6 @@
 package com.example.interviewproject.viewmodels
 
+import android.content.Context
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
@@ -7,6 +8,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.interviewproject.util.Constants
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Job
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.withContext
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
@@ -15,10 +18,10 @@ import okhttp3.WebSocketListener
 import javax.inject.Inject
 
 @HiltViewModel
-class OnBoardingViewModel @Inject constructor(
-    private val client: OkHttpClient
-) : ViewModel() {
+class OnBoardingViewModel  : ViewModel() {
+    private val client= OkHttpClient()
     fun sendWebSocketRequest() {
+  //      val jsonFileString = getJsonDataFromAsset(context, "button.json")
         val json = """
             {
                 "is_request": true,
@@ -32,7 +35,6 @@ class OnBoardingViewModel @Inject constructor(
                 "method": "UpdateControlValue"
             }
         """.trimIndent()
-
         val request = Request.Builder()
             .url("ws://${Constants.IP}:${Constants.PORT}")
             .build()
@@ -44,11 +46,26 @@ class OnBoardingViewModel @Inject constructor(
             }
 
             override fun onFailure(webSocket: WebSocket, t: Throwable, response: Response?) {
-                super.onFailure(webSocket, t, response) }
+                super.onFailure(webSocket, t, response)
+            }
 
             override fun onMessage(webSocket: WebSocket, text: String) {
                 super.onMessage(webSocket, text)
             }
         })
     }
+/*
+    fun getJsonDataFromAsset(
+        context: Context,
+        fileName: String
+    ): String? {
+        val jsonString: String
+        try {
+            jsonString = context.assets.open(fileName).bufferedReader().use { it.readText() }
+        } catch (ioException: java.io.IOException) {
+            ioException.printStackTrace()
+            return null
+        }
+    }
+    */
 }

@@ -1,0 +1,11 @@
+{
+  "is_request": true,
+  "id": 84,
+  "params": [
+    {
+      "id": "a2830d60-ddff-4ad-8f3d-dfca0ded2462",
+      "value": 1
+    }
+  ],
+  "method": "UpdateControlValue"
+}

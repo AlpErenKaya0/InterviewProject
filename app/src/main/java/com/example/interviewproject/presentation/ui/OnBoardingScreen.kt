@@ -29,7 +29,6 @@ import com.example.interviewproject.presentation.ui.navigation.Screen
 import com.example.interviewproject.viewmodels.OnBoardingViewModel
 import dagger.hilt.android.scopes.ViewScoped
 import io.ktor.http.websocket.websocketServerAccept
-@ViewScoped
 @Composable
 fun OnBoardingScreen(navController: NavController, onBoardingViewModel:OnBoardingViewModel= hiltViewModel()) {
     Surface(
